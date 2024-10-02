@@ -4,8 +4,8 @@ class CreateLecturers < ActiveRecord::Migration[7.1]
       t.string :first_name
       t.string :last_name
       t.integer :organisation_id
-      t.string :position
-
+      t.string :email
+      t.string :password_digest
       t.timestamps
     end
   end

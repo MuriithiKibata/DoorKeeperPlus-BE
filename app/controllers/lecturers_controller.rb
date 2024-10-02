@@ -18,6 +18,7 @@ class LecturersController < ApplicationController
     @lecturer = Lecturer.new(lecturer_params)
 
     if @lecturer.save
+      cookies.signed[:id]={:value=>lecturer.id,:httponly=>true}
       render json: @lecturer, status: :created, location: @lecturer
     else
       render json: @lecturer.errors, status: :unprocessable_entity
@@ -46,6 +47,14 @@ class LecturersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lecturer_params
-      params.require(:lecturer).permit(:first_name, :last_name, :organisation_id, :position)
+      params.permit(
+        :first_name, 
+        :last_name, 
+        :organisation_id, 
+        :email, 
+        :password, 
+        :password_confirmation,
+        lecturer_detail_attributes: [:phone_number, :postion, :rating]
+        )
     end
 end

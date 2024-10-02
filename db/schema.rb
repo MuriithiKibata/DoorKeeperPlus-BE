@@ -42,20 +42,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_13_113012) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "first_names", force: :cascade do |t|
-    t.string "last_name"
-    t.integer "organisation_id"
-    t.string "fingerprint"
-    t.string "admission_number"
-    t.string "email"
-    t.string "phone_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "lecturer_details", force: :cascade do |t|
     t.string "phone_number"
-    t.string "email"
+    t.string "position"
     t.integer "rating"
     t.integer "lecturer_id"
     t.datetime "created_at", null: false
@@ -66,7 +55,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_13_113012) do
     t.string "first_name"
     t.string "last_name"
     t.integer "organisation_id"
-    t.string "position"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -103,6 +93,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_13_113012) do
     t.time "endtime"
     t.boolean "use_geolocation"
     t.integer "late_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "organisation_id"
+    t.string "fingerprint"
+    t.string "admission_number"
+    t.string "email"
+    t.string "phone_number"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
