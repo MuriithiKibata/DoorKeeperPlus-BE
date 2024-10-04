@@ -7,7 +7,6 @@ class CreateOrganisations < ActiveRecord::Migration[7.1]
       t.string :email
       t.string :number
       t.text :location
-
       t.timestamps
     end
   end

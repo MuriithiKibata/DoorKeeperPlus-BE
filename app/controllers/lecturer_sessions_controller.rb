@@ -5,7 +5,7 @@ class LecturerSessionsController < ApplicationController
 
         if lecturer && lecturer.authenticate(params[:password])
 
-            cookies.signed[:id] = { value: lecturer.id, httponly: true }
+            cookies.signed[:id] = { :value => lecturer.id, :httponly => true, :expires => 1.week }
             
             render json: lecturer
         else 

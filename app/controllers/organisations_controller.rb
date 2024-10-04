@@ -18,7 +18,7 @@ class OrganisationsController < ApplicationController
     @organisation = Organisation.new(organisation_params)
 
     if @organisation.save
-      cookies.signed[:id] = { :value => @organisation.id, :httponly => true }
+      cookies.signed[:id] = { :value => @organisation.id, :httponly => true, :expires => 1.week }
       render json: @organisation, status: :created, location: @organisation
     else
       render json: @organisation.errors, status: :unprocessable_entity

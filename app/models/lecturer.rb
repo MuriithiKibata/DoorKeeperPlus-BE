@@ -9,4 +9,6 @@ class Lecturer < ApplicationRecord
 
     validates :last_name, presence: true
 
+    validates :phone_number, presence: true, length: {within: 10..12}
+
 end

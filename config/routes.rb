@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  resources :students do
+    collection do
+      post 'login', to: 'student_sessions#create'
+    end
+  end
   resources :answers
   resources :choices
   resources :questions
   resources :tests
   resources :enrollments
-  resources :first_names
   resources :lecturer_details
   resources :lecturers do
     collection do
