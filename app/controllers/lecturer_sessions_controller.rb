@@ -14,5 +14,6 @@ class LecturerSessionsController < ApplicationController
         end
     end
 
+    
 
 end

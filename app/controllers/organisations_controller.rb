@@ -18,6 +18,7 @@ class OrganisationsController < ApplicationController
     @organisation = Organisation.new(organisation_params)
 
     if @organisation.save
+      cookies.signed[:id] = { :value => @organisation.id, :httponly => true }
       render json: @organisation, status: :created, location: @organisation
     else
       render json: @organisation.errors, status: :unprocessable_entity
@@ -46,6 +47,6 @@ class OrganisationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def organisation_params
-      params.require(:organisation).permit(:name, :latitude, :longitude, :email, :number, :location)
+      params.require(:organisation).permit(:name, :latitude, :longitude, :email, :number, :location, :password, :password_confirmation)
     end
 end
