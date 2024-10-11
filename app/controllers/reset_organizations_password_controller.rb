@@ -1,0 +1,2 @@
+class ResetOrganizationsPasswordController < ApplicationController
+end

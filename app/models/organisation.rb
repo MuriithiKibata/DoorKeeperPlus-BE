@@ -8,4 +8,25 @@ class Organisation < ApplicationRecord
     validates :longitude, presence: true, length: {maximum: 13}
 
 
+    def generate_reset_token!
+        self.reset_password_token = generate_token!
+        self.reset_password_token_sent_at = Time.now
+        save!
+    end
+
+    def token_is_valid?
+        (self.reset_password_token_sent_at + 15.minutes) > Time.now
+    end
+
+    def reset_password(password)
+        self.reset_password_token = nil
+        self.password = password
+        save!
+    end
+
+    private
+
+    def generate_token!
+        SecureRandom.hex(10)
+    end
 end
