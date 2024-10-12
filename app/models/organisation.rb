@@ -18,7 +18,7 @@ class Organisation < ApplicationRecord
         (self.reset_password_token_sent_at + 15.minutes) > Time.now
     end
 
-    def reset_password(password)
+    def reset_password!(password)
         self.reset_password_token = nil
         self.password = password
         save!
