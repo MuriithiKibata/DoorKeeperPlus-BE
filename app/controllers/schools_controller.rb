@@ -1,6 +1,6 @@
 class SchoolsController < ApplicationController
   before_action :set_school, only: %i[ show update destroy ]
-
+  before_action :isOrganisation?
   # GET /schools
   def index
     @schools = School.all
@@ -15,7 +15,7 @@ class SchoolsController < ApplicationController
 
   # POST /schools
   def create
-    @school = School.new(school_params)
+    @school = School.new(school_params.merge(organisation_id: Current.user.id))
 
     if @school.save
       render json: @school, status: :created, location: @school
@@ -46,6 +46,8 @@ class SchoolsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def school_params
-      params.require(:school).permit(:name, :organisation_id)
+      params.require(:school).permit(:name)
     end
+
+   
 end

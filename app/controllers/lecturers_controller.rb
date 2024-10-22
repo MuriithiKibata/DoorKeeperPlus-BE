@@ -18,7 +18,7 @@ class LecturersController < ApplicationController
     @lecturer = Lecturer.new(lecturer_params)
 
     if @lecturer.save
-      cookies.signed[:id]={:value=>@lecturer.id,:httponly=>true, :expires => 1.week}
+      cookies.signed[:lecturer_id]={:value=>@lecturer.id,:httponly=>true, :expires => 1.week}
       render json: @lecturer, status: :created, location: @lecturer
     else
       render json: @lecturer.errors, status: :unprocessable_entity

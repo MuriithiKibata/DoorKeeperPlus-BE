@@ -18,7 +18,7 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
 
     if @student.save
-      cookies.signed[:id] = {:httponly => true, :value => @student.id, :expires => 1.week}
+      cookies.signed[:school_id] = {:httponly => true, :value => @student.id, :expires => 1.week}
       render json: @student, status: :created, location: @student
     else
       render json: @student.errors, status: :unprocessable_entity

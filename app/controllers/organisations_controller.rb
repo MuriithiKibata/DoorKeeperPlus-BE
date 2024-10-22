@@ -1,6 +1,6 @@
 class OrganisationsController < ApplicationController
   before_action :set_organisation, only: %i[ show update destroy ]
-
+  skip_before_action :set_current_attributes, only: %i[create]
   # GET /organisations
   def index
     @organisations = Organisation.all
@@ -18,7 +18,7 @@ class OrganisationsController < ApplicationController
     @organisation = Organisation.new(organisation_params)
 
     if @organisation.save
-      cookies.signed[:id] = { :value => @organisation.id, :httponly => true, :expires => 1.week }
+      cookies.signed[:organisation_id] = { :value => @organisation.id, :httponly => true, :expires => 1.week }
       render json: @organisation, status: :created, location: @organisation
     else
       render json: @organisation.errors, status: :unprocessable_entity
